@@ -23,8 +23,6 @@
         h2 { font-size: 2.2rem; color: var(--primary-red); margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
         h3 { font-size: 1.5rem; margin-bottom: 0.8rem; color: #fff; }
         p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 1.5rem; }
-        ul { margin-left: 20px; margin-bottom: 1.5rem; color: var(--text-muted); }
-        li { margin-bottom: 0.5rem; }
         strong { color: #fff; }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
@@ -40,8 +38,6 @@
 
         .btn { display: inline-block; background-color: var(--primary-red); color: #fff; padding: 14px 28px; text-decoration: none; border-radius: 4px; font-weight: bold; transition: background 0.3s ease; margin: 0 10px; }
         .btn:hover { background-color: #b82b40; }
-        .btn-outline { background-color: transparent; border: 2px solid var(--primary-red); }
-        .btn-outline:hover { background-color: rgba(157,34,53,0.1); }
 
         section { padding: 100px 0; border-bottom: 1px solid var(--border-color); }
 
@@ -85,11 +81,8 @@
             <div class="feature-grid">
                 <div class="text-content">
                     <div class="tech-tags"><span>SQL Server</span><span>Double-Entry Accounting</span><span>Normalization</span></div>
-                    <p>At the core of Hog Bank is a strictly normalized SQL Server database. The C# backend acts purely as a stateless routing layer, deferring to secure SQL stored procedures for transaction execution.</p>
-                    <p>By enforcing strict Foreign Key constraints across the Customer, Account, and Transaction tables, the system guarantees absolute data integrity. Every cent is permanently traced to a specific teller ID, terminal, and geospatial branch coordinate.</p>
-                    <ul>
-                        <li><strong>Check 21 Act Implementation:</strong> We built backend logic to segregate "Ledger Balance" from "Available Balance" to simulate federal check-clearing holds.</li>
-                    </ul>
+                    <p>At the core of Hog Bank is a strictly normalized SQL Server database. By enforcing strict Foreign Key constraints across the Customer, Account, and Transaction tables, the system guarantees absolute data integrity. Every cent is permanently traced to a specific teller ID, terminal, and geospatial branch coordinate.</p>
+                    <p>The ledger operates with robust institutional logic, natively segregating "Ledger Balance" from "Available Balance" within the database to simulate federal Check 21 Act holding rules.</p>
                 </div>
                 <div class="image-content">
                     <div class="img-wrapper">
@@ -106,7 +99,7 @@
                 <div class="text-content">
                     <div class="tech-tags"><span>C# Middleware</span><span>SQL Geometry</span><span>Redis Pattern</span></div>
                     <p>Legacy systems detect fraud after settlement. Hog Bank intercepts it during the request lifecycle.</p>
-                    <p><strong>Idempotency Gateways:</strong> We engineered a thread-safe cache system. Cryptographic tokens are attached to every network request; if a user double-clicks "Transfer" or the network lags, the backend instantly drops duplicate payloads, neutralizing double-spend risks.</p>
+                    <p><strong>Idempotency Gateways:</strong> We engineered a thread-safe cache system. Cryptographic tokens are attached to every network request. If a user double-clicks "Transfer", the backend drops the duplicate payload, neutralizing double-spend risks.</p>
                     <p><strong>Geospatial Intercepts:</strong> Using native SQL <code>POINT</code> geometry calculations, the database checks POS swipe locations. If a card is swiped in Fayetteville and Tokyo within a 5-minute window, the velocity threshold triggers an automatic system lock.</p>
                 </div>
                 <div class="image-content">
@@ -124,7 +117,7 @@
                 <div class="text-content">
                     <div class="tech-tags"><span>SQL OPENJSON</span><span>Bulk Operations</span><span>O(1) Efficiency</span></div>
                     <p>To prove the scalability of the architecture, we built a B2B clearinghouse feature designed to handle massive corporate payroll files.</p>
-                    <p>Instead of using slow C# <code>foreach</code> loops to process thousands of transactions one by one, the application passes raw JSON payloads directly into the database. By utilizing SQL Server's native <code>OPENJSON</code> functionality, the backend parses, validates, and distributes funds across thousands of accounts in a single, highly optimized batch transaction.</p>
+                    <p>Instead of using slow C# loops to process thousands of transactions one by one, the application passes raw JSON payloads directly into the database. By utilizing SQL Server's native <code>OPENJSON</code> functionality, the backend parses, validates, and distributes funds across thousands of accounts in a single, highly optimized batch transaction.</p>
                 </div>
                 <div class="image-content">
                     <div class="img-wrapper">
@@ -141,7 +134,7 @@
                 <div class="text-content">
                     <div class="tech-tags"><span>System-Versioned Tables</span><span>Compliance</span><span>Plaid Integration</span></div>
                     <p>Financial institutions operate under strict regulatory compliance (e.g., KYC rules). To meet these standards, our CRM utilizes <strong>SQL System-Versioned Temporal Tables</strong>.</p>
-                    <p>When a teller updates a customer's profile (like changing an email or physical address), the old data is never overwritten. The database automatically versions the row with exact <code>ValidFrom</code> and <code>ValidTo</code> timestamps, creating an immutable "Time Machine" audit trail of every change ever made to an account.</p>
+                    <p>When a teller updates a customer's profile, the old data is never overwritten. The database automatically versions the row with exact timestamps, creating an immutable "Time Machine" audit trail of every change ever made to an account.</p>
                 </div>
                 <div class="image-content">
                     <div class="img-wrapper">
@@ -169,19 +162,35 @@
             </div>
         </section>
 
-        <section style="border-bottom: none;">
-            <h2>6. Graph Theory & AML Compliance</h2>
+        <section>
+            <h2>6. Spatial Analytics & Gravity Modeling</h2>
             <div class="feature-grid reverse">
                 <div class="text-content">
-                    <div class="tech-tags"><span>DFS Algorithms</span><span>FinCEN Reporting</span><span>Benford's Law</span></div>
-                    <p>To monitor millions of synthetic transactions, we built executive-level forensic tools.</p>
-                    <p>We implemented <strong>Benford's Law</strong> distribution charts to catch manipulated or fabricated ledgers. More importantly, we engineered a Depth-First Search (DFS) algorithm to map network topologies, successfully identifying and visually flagging circular Anti-Money Laundering (AML) syndicates.</p>
-                    <p>Once detected, the system automatically generates federal <strong>Suspicious Activity Reports (SAR)</strong>, formulating regulatory narrative text for Bank Secrecy Act violations.</p>
+                    <div class="tech-tags"><span>Geospatial Mapping</span><span>Huff Gravity Model</span><span>Data Visualization</span></div>
+                    <p>To assist branch managers with physical expansion planning, the application dynamically generates a regional distribution map.</p>
+                    <p>This interactive map visualizes active account balances scaled by a square root transformation. By feeding live customer latitude and longitude data into the frontend, the system models the geographical reach of our branch using the Huff Gravity Model.</p>
                 </div>
                 <div class="image-content">
                     <div class="img-wrapper">
-                        <img src="assets/sar-report.png" alt="SAR auto-generation and AML flagging">
-                        <div class="caption">Automated FinCEN narrative generation and Graph Theory AML.</div>
+                        <img src="assets/aml-map.png" alt="Regional Customer Distribution Map">
+                        <div class="caption">Regional Customer Distribution Map.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section style="border-bottom: none;">
+            <h2>7. Graph Theory & Compliance Reporting</h2>
+            <div class="feature-grid">
+                <div class="text-content">
+                    <div class="tech-tags"><span>DFS Algorithms</span><span>FinCEN Reporting</span><span>AML Tracing</span></div>
+                    <p>To secure the institution against syndicate attacks, we implemented forensic algorithms directly into the executive dashboard.</p>
+                    <p>We engineered a <strong>Depth-First Search (DFS) algorithm</strong> to trace network topologies, specifically looking for circular Anti-Money Laundering (AML) dependency structures. Once a syndicate is detected, the system automatically formulates a <strong>Suspicious Activity Report (SAR)</strong>, generating the official narrative text required for Bank Secrecy Act violations.</p>
+                </div>
+                <div class="image-content">
+                    <div class="img-wrapper">
+                        <img src="assets/sar-report.png" alt="SAR auto-generation">
+                        <div class="caption">Automated FinCEN SAR narrative generation.</div>
                     </div>
                 </div>
             </div>
@@ -191,7 +200,7 @@
 
     <footer style="text-align: center; padding: 50px 20px; border-top: 1px solid var(--border-color); color: var(--text-muted);">
         <p style="font-size: 1.1rem; font-weight: bold; color: #fff;">Architected by Team Delta | Spring 2026</p>
-        <p style="margin-top: 10px;">Owen Schock • Kydon Huttenlocher • Owen Williams • Tate Reynolds</p>
+        <p style="margin-top: 10px;">Owen Schock • Kydon Huttenlocher • Tate Reynolds • Owen Williams</p>
     </footer>
 
 </body>
