@@ -6,98 +6,61 @@
     <title>Hog Bank v2.0 | Enterprise Architecture</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS RESET & VARIABLES */
         :root {
-            --bg-color: #121212;
-            --surface-color: #1e1e1e;
+            --bg-color: #0d0d0d;
+            --surface-color: #1a1a1a;
             --primary-red: #9D2235;
             --text-main: #f4f4f4;
             --text-muted: #a0a0a0;
+            --border-color: #2a2a2a;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-        }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
 
-        /* TYPOGRAPHY */
-        h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; }
-        h2 { font-size: 2rem; color: var(--primary-red); margin-bottom: 1rem; border-bottom: 2px solid #333; padding-bottom: 0.5rem; }
-        h3 { font-size: 1.5rem; margin-bottom: 0.5rem; color: #fff; }
+        h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.1; }
+        h2 { font-size: 2.2rem; color: var(--primary-red); margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
+        h3 { font-size: 1.5rem; margin-bottom: 0.8rem; color: #fff; }
         p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+        ul { margin-left: 20px; margin-bottom: 1.5rem; color: var(--text-muted); }
+        li { margin-bottom: 0.5rem; }
+        strong { color: #fff; }
 
-        /* LAYOUT */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
 
         header {
-            padding: 100px 0;
+            padding: 120px 0 80px 0;
             text-align: center;
-            background: linear-gradient(180deg, rgba(157,34,53,0.15) 0%, rgba(18,18,18,1) 100%);
-            border-bottom: 1px solid #333;
+            background: radial-gradient(circle at 50% 0%, rgba(157,34,53,0.15) 0%, rgba(13,13,13,1) 70%);
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .hero-subtitle { font-size: 1.2rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 2rem auto; }
+        .hero-subtitle { font-size: 1.25rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 2.5rem auto; }
 
-        .btn {
-            display: inline-block;
-            background-color: var(--primary-red);
-            color: #fff;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-            transition: background 0.3s ease;
-            margin: 0 10px;
-        }
+        .btn { display: inline-block; background-color: var(--primary-red); color: #fff; padding: 14px 28px; text-decoration: none; border-radius: 4px; font-weight: bold; transition: background 0.3s ease; margin: 0 10px; }
         .btn:hover { background-color: #b82b40; }
         .btn-outline { background-color: transparent; border: 2px solid var(--primary-red); }
         .btn-outline:hover { background-color: rgba(157,34,53,0.1); }
 
-        section { padding: 80px 0; border-bottom: 1px solid #222; }
+        section { padding: 100px 0; border-bottom: 1px solid var(--border-color); }
 
-        /* GRID SYSTEM FOR FEATURES */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-            margin-top: 40px;
-        }
-        
+        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
         .feature-grid.reverse .text-content { order: 2; }
         .feature-grid.reverse .image-content { order: 1; }
 
-        @media (max-width: 768px) {
-            .feature-grid, .feature-grid.reverse {
-                grid-template-columns: 1fr;
-            }
+        @media (max-width: 900px) {
+            .feature-grid, .feature-grid.reverse { grid-template-columns: 1fr; gap: 40px; }
             .feature-grid.reverse .text-content { order: 1; }
             .feature-grid.reverse .image-content { order: 2; }
         }
 
-        /* IMAGE CONTAINERS */
-        .img-wrapper {
-            background-color: var(--surface-color);
-            border-radius: 8px;
-            padding: 10px;
-            border: 1px solid #333;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        .img-wrapper img {
-            width: 100%;
-            height: auto;
-            border-radius: 4px;
-            display: block;
-        }
+        .img-wrapper { background-color: var(--surface-color); border-radius: 8px; padding: 12px; border: 1px solid var(--border-color); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .img-wrapper img { width: 100%; height: auto; border-radius: 4px; display: block; }
+        .caption { text-align: center; font-size: 0.9rem; color: #666; margin-top: 10px; font-style: italic; }
 
-        /* FADE IN ANIMATION */
+        .tech-tags span { background: #222; border: 1px solid #444; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; margin-right: 8px; color: #ccc; display: inline-block; margin-bottom: 8px; }
+
         .fade-in { animation: fadeIn 1s ease-in; }
         @keyframes fadeIn { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
     </style>
@@ -106,12 +69,11 @@
 
     <header class="fade-in">
         <div class="container">
-            <p style="color: var(--primary-red); font-weight: bold; letter-spacing: 2px; text-transform: uppercase;">Team Delta Capstone</p>
+            <p style="color: var(--primary-red); font-weight: bold; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px;">Team Delta Capstone Architecture</p>
             <h1>Hog Bank v2.0 Enterprise Core</h1>
-            <p class="hero-subtitle">A full-stack, ACID-compliant banking prototype engineered with C#, ASP.NET Minimal APIs, and SQL Server. Built to intercept threats at the database level and model macroeconomic stress in real-time.</p>
+            <p class="hero-subtitle">A full-stack, ACID-compliant banking prototype engineered with C#, ASP.NET Minimal APIs, and SQL Server. Designed to move beyond UI and implement true institutional-grade database security, algorithmic underwriting, and macroeconomic stress testing.</p>
             <div>
-                <a href="https://github.com/OwenSchock" class="btn">View Source Code</a>
-                <a href="#" class="btn btn-outline">Watch Live Demo</a>
+                <a href="https://github.com/OwenSchock" class="btn">View GitHub Source</a>
             </div>
         </div>
     </header>
@@ -119,80 +81,107 @@
     <main class="container fade-in">
         
         <section>
-            <h2>1. System Architecture & The Relational Core</h2>
+            <h2>1. The Relational Ledger & ACID Compliance</h2>
             <div class="feature-grid">
                 <div class="text-content">
-                    <p>At the heart of Hog Bank is a strictly normalized, <strong>ACID-compliant SQL Server database</strong>. Rather than relying on the frontend for financial math, the C# ASP.NET backend acts purely as a high-speed routing layer, deferring to secure SQL stored procedures for double-entry ledger settlement.</p>
-                    <p>By enforcing Foreign Key constraints across Customer, Account, and Transaction tables, the system guarantees absolute data integrity. Every dollar moved is permanently traced to a specific teller, terminal, and geospatial coordinate.</p>
+                    <div class="tech-tags"><span>SQL Server</span><span>Double-Entry Accounting</span><span>Normalization</span></div>
+                    <p>At the core of Hog Bank is a strictly normalized SQL Server database. The C# backend acts purely as a stateless routing layer, deferring to secure SQL stored procedures for transaction execution.</p>
+                    <p>By enforcing strict Foreign Key constraints across the Customer, Account, and Transaction tables, the system guarantees absolute data integrity. Every cent is permanently traced to a specific teller ID, terminal, and geospatial branch coordinate.</p>
+                    <ul>
+                        <li><strong>Check 21 Act Implementation:</strong> We built backend logic to segregate "Ledger Balance" from "Available Balance" to simulate federal check-clearing holds.</li>
+                    </ul>
                 </div>
                 <div class="image-content">
                     <div class="img-wrapper">
                         <img src="assets/erd-screenshot.png" alt="Enterprise Entity Relationship Diagram">
+                        <div class="caption">Hog Bank Enterprise Database Schema</div>
                     </div>
                 </div>
             </div>
         </section>
 
         <section>
-            <h2>2. The Hardened Security Arsenal</h2>
+            <h2>2. Proactive API & Spatial Security</h2>
             <div class="feature-grid reverse">
                 <div class="text-content">
-                    <h3>Proactive Database Defense</h3>
-                    <p>Legacy banks detect fraud after the money is gone. Hog Bank intercepts it mid-transaction.</p>
-                    <p><strong>Idempotency Gateways:</strong> Cryptographic cache tokens instantly drop duplicate API requests, neutralizing the risk of double-spending.</p>
-                    <p><strong>Geospatial Intercepts:</strong> Using native SQL <code>POINT</code> geometry, the database calculates "Impossible Travel" velocities. If a card is swiped in Fayetteville and Tokyo within 5 minutes, the account is systematically locked before the settlement clears.</p>
+                    <div class="tech-tags"><span>C# Middleware</span><span>SQL Geometry</span><span>Redis Pattern</span></div>
+                    <p>Legacy systems detect fraud after settlement. Hog Bank intercepts it during the request lifecycle.</p>
+                    <p><strong>Idempotency Gateways:</strong> We engineered a thread-safe cache system. Cryptographic tokens are attached to every network request; if a user double-clicks "Transfer" or the network lags, the backend instantly drops duplicate payloads, neutralizing double-spend risks.</p>
+                    <p><strong>Geospatial Intercepts:</strong> Using native SQL <code>POINT</code> geometry calculations, the database checks POS swipe locations. If a card is swiped in Fayetteville and Tokyo within a 5-minute window, the velocity threshold triggers an automatic system lock.</p>
                 </div>
                 <div class="image-content">
                     <div class="img-wrapper">
                         <img src="assets/security-slide.png" alt="Security Features Grid">
+                        <div class="caption">The four pillars of our database-level security arsenal.</div>
                     </div>
                 </div>
             </div>
         </section>
 
         <section>
-            <h2>3. CRM & System-Versioned Temporal Audits</h2>
+            <h2>3. B2B Payroll & High-Speed Ingestion</h2>
             <div class="feature-grid">
                 <div class="text-content">
-                    <h3>The "Time Machine" Ledger</h3>
-                    <p>Financial institutions are heavily regulated by compliance laws. To meet these standards, our CRM utilizes <strong>SQL Temporal Tables</strong>.</p>
-                    <p>When a teller updates a customer's profile (like an email address or physical location), the old data is never overwritten. The database automatically versions the row with exact timestamps, creating an immutable, legally compliant audit trail.</p>
+                    <div class="tech-tags"><span>SQL OPENJSON</span><span>Bulk Operations</span><span>O(1) Efficiency</span></div>
+                    <p>To prove the scalability of the architecture, we built a B2B clearinghouse feature designed to handle massive corporate payroll files.</p>
+                    <p>Instead of using slow C# <code>foreach</code> loops to process thousands of transactions one by one, the application passes raw JSON payloads directly into the database. By utilizing SQL Server's native <code>OPENJSON</code> functionality, the backend parses, validates, and distributes funds across thousands of accounts in a single, highly optimized batch transaction.</p>
+                </div>
+                <div class="image-content">
+                    <div class="img-wrapper">
+                        <img src="assets/bulk-json.png" alt="Bulk JSON Processing">
+                        <div class="caption">Executing B2B batch payrolls natively in SQL.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>4. Temporal Audits & Dynamic CRM</h2>
+            <div class="feature-grid reverse">
+                <div class="text-content">
+                    <div class="tech-tags"><span>System-Versioned Tables</span><span>Compliance</span><span>Plaid Integration</span></div>
+                    <p>Financial institutions operate under strict regulatory compliance (e.g., KYC rules). To meet these standards, our CRM utilizes <strong>SQL System-Versioned Temporal Tables</strong>.</p>
+                    <p>When a teller updates a customer's profile (like changing an email or physical address), the old data is never overwritten. The database automatically versions the row with exact <code>ValidFrom</code> and <code>ValidTo</code> timestamps, creating an immutable "Time Machine" audit trail of every change ever made to an account.</p>
                 </div>
                 <div class="image-content">
                     <div class="img-wrapper">
                         <img src="assets/audit-history.png" alt="Customer Temporal Audit History">
+                        <div class="caption">The immutable audit trail powered by Temporal Tables.</div>
                     </div>
                 </div>
             </div>
         </section>
 
         <section>
-            <h2>4. Algorithmic Underwriting & DFAST Stress Testing</h2>
-            <div class="feature-grid reverse">
+            <h2>5. Algorithmic Underwriting & DFAST</h2>
+            <div class="feature-grid">
                 <div class="text-content">
-                    <h3>Macroeconomic Scenario Engine</h3>
-                    <p>We built a dynamic risk engine that assigns algorithmic interest rates based on 30-day trailing cash flow (the "HogScore").</p>
-                    <p>To prove the robustness of the system, we generated toxic subprime loans and subjected the portfolio to a <strong>DFAST (Dodd-Frank Act Stress Test)</strong>. By simulating Federal Reserve recession shock multipliers against our Net Present Value (NPV), the application dynamically maps the bank's liquidity collapse—and subsequent recovery via Asset-Backed Securitization (ABS) block trades.</p>
+                    <div class="tech-tags"><span>NPV Modeling</span><span>Macro Stress Testing</span><span>Basel III</span></div>
+                    <p>Hog Bank does not rely on static FICO scores. We built the "HogScore" engine to dynamically assign interest rates based on 30-day trailing cash flow liquidity.</p>
+                    <p>To stress-test the ledger, we implemented a live <strong>DFAST (Dodd-Frank Act Stress Test)</strong> simulator. By originating millions in toxic subprime debt, we can simulate Federal Reserve recession shock multipliers against our Net Present Value (NPV). This maps the bank's liquidity collapse, requiring the manager to execute Wall Street Asset-Backed Securitization (ABS) block trades to save the portfolio.</p>
                 </div>
                 <div class="image-content">
                     <div class="img-wrapper">
                         <img src="assets/dfast-chart.png" alt="DFAST Stress Test Visualization">
+                        <div class="caption">Simulating a Severe Adverse capital shortfall.</div>
                     </div>
                 </div>
             </div>
         </section>
 
         <section style="border-bottom: none;">
-            <h2>5. AML Forensics & B2B Data Ingestion</h2>
-            <div class="feature-grid">
+            <h2>6. Graph Theory & AML Compliance</h2>
+            <div class="feature-grid reverse">
                 <div class="text-content">
-                    <h3>Graph Theory & Statistical Analysis</h3>
-                    <p>To audit millions of synthetic transactions, we implemented statistical forensic tools directly into the executive dashboard.</p>
-                    <p>This includes <strong>Benford's Law</strong> distribution charts to catch manipulated numerical ledgers, and <strong>Graph Theory algorithms (DFS)</strong> to map and visually flag circular Anti-Money Laundering (AML) syndicates.</p>
+                    <div class="tech-tags"><span>DFS Algorithms</span><span>FinCEN Reporting</span><span>Benford's Law</span></div>
+                    <p>To monitor millions of synthetic transactions, we built executive-level forensic tools.</p>
+                    <p>We implemented <strong>Benford's Law</strong> distribution charts to catch manipulated or fabricated ledgers. More importantly, we engineered a Depth-First Search (DFS) algorithm to map network topologies, successfully identifying and visually flagging circular Anti-Money Laundering (AML) syndicates.</p>
+                    <p>Once detected, the system automatically generates federal <strong>Suspicious Activity Reports (SAR)</strong>, formulating regulatory narrative text for Bank Secrecy Act violations.</p>
                 </div>
                 <div class="image-content">
                     <div class="img-wrapper">
-                        <img src="assets/aml-map.png" alt="Geospatial Huff Gravity Model">
+                        <img src="assets/sar-report.png" alt="SAR auto-generation and AML flagging">
+                        <div class="caption">Automated FinCEN narrative generation and Graph Theory AML.</div>
                     </div>
                 </div>
             </div>
@@ -200,8 +189,9 @@
 
     </main>
 
-    <footer style="text-align: center; padding: 40px; border-top: 1px solid #222; color: var(--text-muted);">
-        <p>Architected by Owen Schock & Team Delta | Spring 2026</p>
+    <footer style="text-align: center; padding: 50px 20px; border-top: 1px solid var(--border-color); color: var(--text-muted);">
+        <p style="font-size: 1.1rem; font-weight: bold; color: #fff;">Architected by Team Delta | Spring 2026</p>
+        <p style="margin-top: 10px;">Owen Schock • Kydon Huttenlocher • Owen Williams • Tate Reynolds</p>
     </footer>
 
 </body>
